@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PokemonService } from 'src/shared/services/pokemon.service';
 import { IPokemon } from './../../../shared/model/pokemon.model';
@@ -10,7 +10,7 @@ import { IPokemon } from './../../../shared/model/pokemon.model';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  title = 'Lista de Pokemons';
+  readonly pokeListTitle = 'Lista de Pokemons';
   page = 0;
   pageSize = 15;
   collectionSize: number;
@@ -71,7 +71,7 @@ export class PokemonListComponent implements OnInit {
 
   /* favoritar pokemon */
   isFavorite(pokemon: any){
-    return localStorage.getItem(pokemon.name) === "1";
+    return localStorage.getItem(pokemon.name) === '1';
   };
 
   setPokeFavorite(pokemon:any ){

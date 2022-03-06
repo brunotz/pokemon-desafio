@@ -1,4 +1,3 @@
-import { PokemonListComponent } from './list/pokemon-list.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -10,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 
 import { PokemonComponent } from './pokemon.component';
+import { PokemonListComponent } from './list/pokemon-list.component';
 import { PokemonService } from 'src/shared/services/pokemon.service';
 import { PokemonRoutingModule } from './pokemon-routing.module';
 
