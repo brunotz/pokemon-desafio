@@ -4,7 +4,9 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 
 ## Rodando o Projeto
 
-Primeiramente utilize o `npm install` para instalar as dependecias e depois rode `ng serve` para criar um servidor de desenvolvimento, Navegue para `http://localhost:4200/pokemon`.
+Primeiramente baixe ou clone o projeto, abra o projeto e utilizando a linha de comando execute o `npm install` para instalar as dependências e depois execute o `ng serve` para criar um servidor de desenvolvimento.
+
+Navegue para `http://localhost:4200/#/pokemon` para abrir a página de listagem dos pokemons.
 
 ## Build
 
