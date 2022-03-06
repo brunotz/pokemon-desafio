@@ -1,0 +1,83 @@
+<div class="body">
+  <h1 class="page-title">
+    {{title}}
+  </h1>
+
+  <input class="form-control mt-2 mb-2" 
+        type="text" 
+        [(ngModel)]="searchPokemon"  
+        (keyup.enter)="quickSearch()"
+        placeholder="Procurar por nome ou ID" /> 
+
+  <div class="table-div">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Altura</th>
+        <th scope="col">Peso</th>
+        <th scope="col">Experiência Base</th>
+        <th scope="col">Favorito</th>
+        <th scope="col">Favoritar</th>
+      </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let pokemon of tablePokemons">
+          <tr>
+            <td (click)="pokemon.expanded = !pokemon.expanded">{{ pokemon.expanded ? '&ndash;' : '+'}} {{pokemon.detail?.id}}</td>
+            <td>{{ pokemon.name }}</td>
+            <td>{{ pokemon.detail?.height}}</td>
+            <td>{{ pokemon.detail?.weight}}</td>
+            <td>{{ pokemon.detail?.base_experience}}</td>
+            <td>{{ pokemon.favorite && 'Sim' || 'Não'}}</td>
+            <td>
+              <mat-icon on-click="setPokeFavorite(pokemon)" style="cursor: pointer;">add_circle</mat-icon>
+              <mat-icon on-click="deletePokeFavorite(pokemon)" style="cursor: pointer;" >remove_circle</mat-icon>
+          </td>
+          </tr>
+          <ng-container *ngIf="pokemon.expanded">
+              <tr>
+                <th scope="col">Seq</th>
+                <th scope="col">Habilidade</th>
+              </tr>
+              <ng-template ngFor let-item let-i="index" [ngForOf]="pokemon.detail.abilities">
+                <tr id="skillsRow">
+                  <td>{{item.slot}}</td>
+                  <td>{{item.ability?.name}}</td>
+                </tr>
+              </ng-template>
+
+              <tr>
+                <th scope="col">Valor</th>
+                <th scope="col">Status</th>
+              </tr>
+              <ng-template ngFor let-item let-i="index" [ngForOf]="pokemon.detail.stats">
+                <tr id="statsRow">
+                  <td>{{item.base_stat}}</td>
+                  <td>{{item.stat.name}}</td>
+                </tr>
+              </ng-template>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination 
+        [collectionSize]="collectionSize" 
+        [(page)]="page" 
+        [pageSize]="pageSize"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true" 
+        (pageChange)="setupPokemonList()">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="setupPokemonList()">
+      <option [ngValue]="10">10 Pokemons por pagina</option>
+      <option [ngValue]="15">15 Pokemons por pagina</option>
+      <option [ngValue]="20">20 Pokemons por pagina</option>
+    </select>
+  </div>
+</div>
