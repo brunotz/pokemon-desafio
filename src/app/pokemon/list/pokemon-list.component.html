@@ -25,15 +25,16 @@
       <tbody>
         <ng-container *ngFor="let pokemon of tablePokemons">
           <tr>
-            <td (click)="pokemon.expanded = !pokemon.expanded">{{ pokemon.expanded ? '&ndash;' : '+'}} {{pokemon.detail?.id}}</td>
+            <td class="row-cursor-pointer" 
+                (click)="pokemon.expanded = !pokemon.expanded">{{ pokemon.expanded ? '&ndash;' : '+'}} {{pokemon.detail?.id}}</td>
             <td>{{ pokemon.name }}</td>
             <td>{{ pokemon.detail?.height}}</td>
             <td>{{ pokemon.detail?.weight}}</td>
             <td>{{ pokemon.detail?.base_experience}}</td>
             <td>{{ pokemon.favorite && 'Sim' || 'Não'}}</td>
             <td>
-              <mat-icon on-click="setPokeFavorite(pokemon)" style="cursor: pointer;">add_circle</mat-icon>
-              <mat-icon on-click="deletePokeFavorite(pokemon)" style="cursor: pointer;" >remove_circle</mat-icon>
+              <mat-icon class="row-cursor-pointer" on-click="setPokeFavorite(pokemon)">add_circle</mat-icon>
+              <mat-icon class="row-cursor-pointer" on-click="deletePokeFavorite(pokemon)">remove_circle</mat-icon>
           </td>
           </tr>
           <ng-container *ngIf="pokemon.expanded">
