@@ -1,10 +1,28 @@
 
+export interface IPokemonAbility {
+    name: string;
+}
+
+export interface IPokemonAbilities {
+    slot: number;
+    ability: IPokemonAbility;
+}
+
+export interface IPokemonStat {
+    name: string;
+}
+
+export interface IPokemonStats {
+    base_stat: number;
+    stat: IPokemonStat;
+}
+
 export interface IPokemonDetail {
     id: number;
     name: string;
     height: number;
     weight: number;
-    abilities: any;
+    abilities: Array<IPokemonAbilities>;
     base_experience: number;
     stats:any;
 }
@@ -14,9 +32,9 @@ export class PokemonDetail implements IPokemonDetail {
     name: string;
     height: number;
     weight: number;
-    abilities: any;
     base_experience: number;
-    stats:any;
+    abilities: Array<IPokemonAbilities>;
+    stats: Array<IPokemonStats>;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
